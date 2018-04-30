@@ -72,4 +72,14 @@ public class ReceitaController {
 			return new ResponseEntity<Receita>(receita, HttpStatus.OK);
 		}
 	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Receita> deletReceita(
+			@PathVariable("id") 
+			String id) {
+		System.out.println("Delete receita "+id);
+		Receita receita = receitaRepository.findById(id).get();
+		receitaRepository.delete(receita);
+		return new ResponseEntity<Receita>(receita, HttpStatus.OK);
+	}
 }

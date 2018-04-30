@@ -85,4 +85,14 @@ public class UserController {
 		return new ResponseEntity<User>(user, HttpStatus.OK);
 	}
 	
+	@DeleteMapping("/{login}")
+	public ResponseEntity<User> deleteUser(
+			@PathVariable("login") 
+			String login) {
+		System.out.println("Get user "+login);
+		User user = userRepository.findByLogin(login);
+		userRepository.delete(user);
+		return new ResponseEntity<User>(user, HttpStatus.OK);
+	}
+	
 }
